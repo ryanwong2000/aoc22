@@ -10,4 +10,4 @@ with open('day6/test.in', 'r', encoding="utf-8") as f:
        break
     # move to the right
     window = window[1:] + buffer[x]
-  print(f'[PART 1] The first marker after character: {marker}')
+  print(f'[PART 2] The first marker after character: {marker}')
