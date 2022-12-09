@@ -26,6 +26,4 @@ with open('day8/input.in', 'r', encoding="utf-8") as f:
       if score > highestScore:
         highestScore = score
 
-  # (2, 3) north = [1, 7]
-  line = forest[2][3+1:]
   print(f'[PART 2] highest view score: {highestScore}')
