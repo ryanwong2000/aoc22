@@ -1,14 +1,8 @@
-n lines:
-    if line.startswith('noop'):
-      cycles += 1
-      cycleCount.append((cycles, Xregister))
+tput = ""
+  for i, value in enumerate(cycle_values):
+    if cycle_values[i] in range((i % 40) - 1, (i % 40) + 2):
+      output += "#"
     else:
-      addx, V = line.split()
-      count = int(V)
-      cycles += 1
-      cycleCount.append((cycles, Xregister))
-      cycles += 1
-      Xregister += 1
-      cycleCount.append((cycles, Xregister))
-      
-  print(cycleCount)
+      output += "."
+    if (i + 1) % 40 == 0:
+      output += "\n"
