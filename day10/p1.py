@@ -56,13 +56,11 @@ with open('day10/input.in', 'r', encoding="utf-8") as f:
 
   print(spritePos[219], spritePos[220])
   for ii, pos in enumerate(spritePos):
-    if ii == 0:
-      continue
     if pos in range(ii%40-1, ii%40+2):
       print('#', end='')
     else:
-      print('.', end='')
+      print(' ', end='')
 
-    if ii % 40 == 0:
+    if (ii + 1) % 40 == 0:
       print()
     # print(cycle)

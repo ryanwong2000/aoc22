@@ -18,7 +18,7 @@ with open('day10/input.in', 'r', encoding="utf-8") as f:
     if cycle_values[i] in range((i % 40) - 1, (i % 40) + 2):
       output += "#"
     else:
-      output += " "
+      output += "."
     if (i + 1) % 40 == 0:
       output += "\n"
     
@@ -56,8 +56,8 @@ with open('day10/input.in', 'r', encoding="utf-8") as f:
   # print(spritePos[0], cycle_values[0])
   # print(spritePos[-1], cycle_values[-1])
   for ii, pos in enumerate(spritePos):
-    # if ii == 0:
-    #   continue
+    if ii == 0:
+      continue
     if pos in range(ii%40-1, ii%40+2):
       print('#', end='')
     else:
@@ -65,4 +65,6 @@ with open('day10/input.in', 'r', encoding="utf-8") as f:
 
     if ii % 40 == 0:
       print()
+  
+  
   
