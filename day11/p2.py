@@ -1,22 +1,4 @@
-import re
-
-
-# with open('day11/test.in', 'r', encoding="utf-8") as f:
-#   inventories = []
-#   monkeys = dict() # {0: { op: new = old * 19, test: 23, true: 2, false: 3 }}
-
-#   data = f.read().split('\n\n')
-
-#   for block in data:
-#     lines = block.split('\n')
-#     for line in lines:
-#       line = line.strip()
-#       # print(line)
-#       if 'Monkey' in line:
-#         iMonkey = line[7]
-#       elif 'Starting items:' in line:
-#         inventories.append(re.findall(r'\d+', line))
-#       elif 'Operation:' in line:
+NUMBER_OF_ROUNDS = 10000
            
 inventories = [
   [57],
@@ -31,7 +13,8 @@ inventories = [
 inspect = [0,0,0,0,0,0,0,0]
 def HandleMoonkey0(item):
   item *= 13
-  item //= 3
+  # item //= 3
+  item %= (11*7*13*5*3*17*2*19)
   if item % 11 == 0:
     #throw to monkey 3
     inventories[3].append(item)
@@ -40,7 +23,8 @@ def HandleMoonkey0(item):
     inventories[2].append(item)
 def HandleMoonkey1(item):
   item += 2
-  item //= 3
+  # item //= 3
+  item %= (11*7*13*5*3*17*2*19)
   if item % 7 == 0:
     #throw to monkey 6
     inventories[6].append(item)
@@ -49,7 +33,8 @@ def HandleMoonkey1(item):
     inventories[7].append(item)
 def HandleMoonkey2(item):
   item += 6
-  item //= 3
+  # item //= 3
+  item %= (11*7*13*5*3*17*2*19)
   if item % 13 == 0:
     #throw to monkey 3
     inventories[3].append(item)
@@ -58,7 +43,8 @@ def HandleMoonkey2(item):
     inventories[5].append(item)
 def HandleMoonkey3(item):
   item *= item
-  item //= 3
+  # item //= 3
+  item %= (11*7*13*5*3*17*2*19)
   if item % 5 == 0:
     #throw to monkey 4
     inventories[4].append(item)
@@ -67,7 +53,8 @@ def HandleMoonkey3(item):
     inventories[5].append(item)
 def HandleMoonkey4(item):
   item += 3
-  item //= 3
+  # item //= 3
+  item %= (11*7*13*5*3*17*2*19)
   if item % 3 == 0:
     #throw to monkey 1
     inventories[1].append(item)
@@ -76,7 +63,8 @@ def HandleMoonkey4(item):
     inventories[7].append(item)
 def HandleMoonkey5(item):
   item *= 7
-  item //= 3
+  # item //= 3
+  item %= (11*7*13*5*3*17*2*19)
   if item % 17 == 0:
     #throw to monkey 4
     inventories[4].append(item)
@@ -85,7 +73,8 @@ def HandleMoonkey5(item):
     inventories[1].append(item)
 def HandleMoonkey6(item):
   item += 4
-  item //= 3
+  # item //= 3
+  item %= (11*7*13*5*3*17*2*19)
   if item % 2 == 0:
     #throw to monkey 2
     inventories[2].append(item)
@@ -94,7 +83,8 @@ def HandleMoonkey6(item):
     inventories[0].append(item)
 def HandleMoonkey7(item):
   item += 7
-  item //= 3
+  # item //= 3
+  item %= (11*7*13*5*3*17*2*19)
   if item % 19 == 0:
     #throw to monkey 6
     inventories[6].append(item)
@@ -102,7 +92,7 @@ def HandleMoonkey7(item):
     # throw to monkey 0
     inventories[0].append(item)
 
-for round in range(20):
+for round in range(NUMBER_OF_ROUNDS):
   while(inventories[0]):
     HandleMoonkey0(inventories[0].pop(0))
     inspect[0] += 1
@@ -134,4 +124,4 @@ for round in range(20):
 print(inspect)
 s = sorted(inspect)
 print(s)
-print(f'[PART 1] Monkey Buisiness level {s[-1]*s[-2]}')
+print(f'[PART 2] Monkey Buisiness level {s[-1]*s[-2]}')
