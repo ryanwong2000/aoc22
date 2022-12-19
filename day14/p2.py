@@ -1,10 +1,11 @@
 data = open('day14/input.in', 'r', encoding="utf-8").read().split('\n')
+# each line is a path
 paths = [path for path in data]
-# print(paths)
 
 # make map of
 # assign "collisions"
-filled = set() #set of coords (x, y) where there can be a collision
+filled = set() # set of coords (x, y) where there can be a collision
+# iterate and make the line each path describes by filling from point to point
 for path in paths:
   points = []
   # find the points in a line
@@ -33,7 +34,6 @@ print(f'deepest y: {deepestY} and floor: {floorY}')
 def sandFalling(x, y):
   if (x, y) in filled:
     return False
-  sourceX, sourceY = x, y
   # not in the void
   while y < floorY:
     # check down
@@ -51,12 +51,11 @@ def sandFalling(x, y):
     else:
       filled.add((x, y))
       return True
-  
+  # place sand on floor
   filled.add((x, floorY-1))
   return True
 
 # simulate
-stable = True
 source = (500, 0)
 sandCount = 0
 while sandFalling(source[0], source[1]):
