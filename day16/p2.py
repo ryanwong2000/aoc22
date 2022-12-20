@@ -93,3 +93,4 @@ for i in range((bAllOpen + 1 // 2)):
   bestFlow = max(bestFlow, me + ellie)
 
 print(f'[PART 2] The best path with Yung Ellie will release {bestFlow} pressure')
+# shout out the boy https://www.youtube.com/watch?v=bLMj50cpOug
