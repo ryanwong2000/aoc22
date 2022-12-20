@@ -1,4 +1,4 @@
-data = open('day15/input.in', 'r', encoding="utf-8").read().split('\n')
+data = open('day15/test.in', 'r', encoding="utf-8").read().split('\n')
 lines = [line.split(': ') for line in data]
 
 # gets the coordinates from a string containing the coordinates
@@ -25,7 +25,7 @@ for line in lines:
     if words[0].startswith('closest'):
       beaconCoords.append((parseCoords(words)))
 
-YY = 2000000
+YY = 10
 
 intervals = []
 
@@ -38,6 +38,8 @@ for i, sensor in enumerate(sensorCoords):
   sy = sensor[1]
   distance = manhattanDistance(sx, sy, bx, by)
   distanceToYY = abs(YY - sy)
+  if distanceToYY > distance:
+    continue
   dx = abs(distance - distanceToYY)
   intervals.append((sx - dx, sx + dx))
 
@@ -56,4 +58,6 @@ for x in range(minX, maxX+1):
     if left <= x <= right:
       covered += 1
       break
+# print(intervals)
 print(f'[PART 1] The number of positions covered at Y={YY} is {covered}')
+
