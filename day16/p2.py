@@ -11,19 +11,23 @@ for line in data:
     'leadsTo': [word.strip(',') for word in words[9:]]
   }
 # print(valves)
+
 # get the valves that actually have a flow rate
 toOpen = [v for v in valves if valves[v]['rate'] > 0]
 print(len(toOpen))
 
 # track the shortest distance from each valves
+# this will effectively be a new graph where we can ignore the nodes that dont have a valve to open
 distances = dict()
 
 for valve in valves: #valve is the key for valves
+  # ignore "empty" nodes
   if valve != START and not valves[valve]['rate']:
-    continue # ignore "empty" nodes
+    continue
 
   distances[valve] = {valve: 0, START: 0} # we add the current valve and the START temporarily so we dont search them
 
+  # track the valves we visit
   visited = {valve}
 
   visitQ = [(0, valve)] # (distance, name of visited valve)
@@ -55,7 +59,7 @@ cache = {}
 # HOW I UNDERSTAND THE BITMASK TO WORK
 # 000100101 reads right to left <----------------
 # 1st is open, 2nd is closed, 3rd is open, 4th is closed, etc
-def dfs(time, valve, bitmask): # a bitmask track the binary state of every valve that we need to turn on
+def dfs(time, valve, bitmask):
   # check cache if we have already calculated for this subtree
   if (time, valve, bitmask) in cache:
     return cache[(time, valve, bitmask)]
