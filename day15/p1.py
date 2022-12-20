@@ -1,4 +1,4 @@
-data = open('day15/test.in', 'r', encoding="utf-8").read().split('\n')
+data = open('day15/input.in', 'r', encoding="utf-8").read().split('\n')
 lines = [line.split(': ') for line in data]
 
 # gets the coordinates from a string containing the coordinates
@@ -22,11 +22,26 @@ for line in lines:
     if words[0].startswith('closest'):
       beaconCoords.append((parseCoords(words)))
 
-def expand(x, y):
+covered = set()
+# calculate the manhattan distance to the beacon coordinates
+for iSensor, sensor in enumerate(sensorCoords):
+  sensorX, sensorY = sensor
+  beaconX, beaconY = beaconCoords[iSensor]
+  distance = abs(sensorX - beaconX) + abs(sensorY - beaconY)
+  # mark all the coordinates within that distance as marked
   
+  # define direction vectors
+  dr = [1, 1, -1, -1]
+  dc = [1, -1, 1, -1]
+  for d in range(4):
+    for ii in range(distance+1):
+      for jj in range(ii+1):
+        covered.add((sensorX + jj * dr[d], sensorY + (ii - jj) * dc[d]))
 
-# define direction vectors
-#      N  E  W  S
-dr = [-1, 0, 0, 1]
-dc = [0, 1, -1, 0]
+yLevel = 2000000
+covered = covered.difference(set(beaconCoords))
+print(len(covered))
+res = [x for x in covered if x[1] == yLevel]
+print(len(res))
+
 
